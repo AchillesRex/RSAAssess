@@ -5,7 +5,7 @@ Approach:
 The assessment required provisioning an EC2 instance on AWS, configuring Nginx, setting up a virtual host, and deploying WordPress using Docker. To accomplish these tasks, I utilized Terraform for infrastructure provisioning and Ansible for configuration management and application deployment.
 
     Provisioning EC2 Instance with Terraform:
-        Created Terraform configuration files (main.tf, variables.tf, and output.tf) to define the AWS provider, EC2 instance, and associated resources (VPC, security group, etc.).
+        Created Terraform configuration files (main.tf) to define the AWS provider, EC2 instance, and associated resources (VPC, security group, etc.).
         Used variables to parameterize the configuration, allowing for easy modification of instance details, such as the AMI ID and instance type.
         Executed terraform init, terraform plan, and terraform apply commands to provision the EC2 instance on AWS.
     Installing and Configuring Nginx with Ansible:
