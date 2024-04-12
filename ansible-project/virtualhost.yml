@@ -1,0 +1,34 @@
+---
+- name: Configure virtual host
+  hosts: webserver
+  become: yes
+  remote_user: <Secret>
+  vars:
+    ansible_ssh_private_key_file: /opt/key.pem
+
+  tasks:
+    - name: Create website directory
+      file:
+        path: /var/www/example.com
+        state: directory
+
+    - name: Create index.html file
+      copy:
+        content: "<h1>Welcome to Example.com</h1>"
+        dest: /var/www/example.com/index.html
+
+    - name: Create virtual host configuration
+      template:
+        src: virtualhost.conf.j2
+        dest: /etc/nginx/sites-available/example.com.conf
+
+    - name: Enable virtual host
+      file:
+        src: /etc/nginx/sites-available/example.com.conf
+        dest: /etc/nginx/sites-enabled/example.com.conf
+        state: link
+
+    - name: Restart Nginx service
+      service:
+        name: nginx
+        state: restarted

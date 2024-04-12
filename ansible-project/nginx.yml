@@ -1,0 +1,18 @@
+---
+- name: Install and configure Nginx
+  hosts: webserver
+  become: yes
+  remote_user: <Secret>
+  vars:
+    ansible_ssh_private_key_file: /opt/key.pem
+
+  tasks:
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Start Nginx service
+      service:
+        name: nginx
+        state: started
